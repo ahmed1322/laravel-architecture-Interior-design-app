@@ -1,0 +1,5 @@
+views/vendor
+views/welcome.blade.php
+js/*
+!js/bootstrap.js
+!js/app.js
