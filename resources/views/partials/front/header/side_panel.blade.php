@@ -14,55 +14,7 @@
                     @endif
                 </a>
             </div>
-            <div class="ot-heading">
-                <h2 class="main-heading">Our Gallery</h2>
-            </div>
-            <div class="image-gallery">
-                <div id="gallery-1" class="gallery galleryid-102 gallery-columns-3 gallery-size-thumbnail">
-                    <figure class="gallery-item">
-                        <div class="gallery-icon landscape">
-                            <a href="https://via.placeholder.com/150x150.png">
-                                <img src="https://via.placeholder.com/150x150.png" class="" alt="">
-                            </a>
-                        </div>
-                    </figure>
-                    <figure class="gallery-item">
-                        <div class="gallery-icon landscape">
-                            <a href="https://via.placeholder.com/150x150.png">
-                                <img src="https://via.placeholder.com/150x150.png" class="" alt="">
-                            </a>
-                        </div>
-                    </figure>
-                    <figure class="gallery-item">
-                        <div class="gallery-icon landscape">
-                            <a href="https://via.placeholder.com/150x150.png">
-                                <img src="https://via.placeholder.com/150x150.png" class="" alt="">
-                            </a>
-                        </div>
-                    </figure>
-                    <figure class="gallery-item">
-                        <div class="gallery-icon landscape">
-                            <a href="https://via.placeholder.com/150x150.png">
-                                <img src="https://via.placeholder.com/150x150.png" class="" alt="">
-                            </a>
-                        </div>
-                    </figure>
-                    <figure class="gallery-item">
-                        <div class="gallery-icon landscape">
-                            <a href="https://via.placeholder.com/150x150.png">
-                                <img src="https://via.placeholder.com/150x150.png" class="" alt="">
-                            </a>
-                        </div>
-                    </figure>
-                    <figure class="gallery-item">
-                        <div class="gallery-icon landscape">
-                            <a href="https://via.placeholder.com/150x150.png">
-                                <img src="https://via.placeholder.com/150x150.png" class="" alt="">
-                            </a>
-                        </div>
-                    </figure>
-                </div>
-            </div>
+
             <div class="ot-heading ">
                 <h2 class="main-heading">Contact Info</h2>
             </div>
@@ -70,15 +22,15 @@
                 <ul class="panel-cinfo">
                     <li class="panel-list-item">
                         <span class="panel-list-icon"><i class="ot-flaticon-place"></i></span>
-                        <span class="panel-list-text">411 University St, Seattle, USA</span>
+                        <span class="panel-list-text">{{ $settings->site_name }}</span>
                     </li>
                     <li class="panel-list-item">
                         <span class="panel-list-icon"><i class="ot-flaticon-mail"></i></span>
-                        <span class="panel-list-text">theratio_interior@mail.com</span>
+                        <span class="panel-list-text">{{ $settings->site_email }}</span>
                     </li>
                     <li class="panel-list-item">
                         <span class="panel-list-icon"><i class="ot-flaticon-phone-call"></i></span>
-                        <span class="panel-list-text">+1 800 456 789 123</span>
+                        <span class="panel-list-text">{{ $settings->site_phone }}</span>
                     </li>
                 </ul>
             </div>
