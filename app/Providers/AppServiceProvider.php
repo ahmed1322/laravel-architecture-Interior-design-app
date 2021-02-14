@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\View\Composers\CategoryComposer;
 use App\Http\View\Composers\PortfolioComposer;
+use App\Http\View\Composers\BreadcrumbsComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('partials.Composers.Categories.*', CategoryComposer::class);
         // Share Portfolios Between Specific Models
         View::composer('partials.Composers.Portfolios.*', PortfolioComposer::class);
+
+        View::composer('partials.front.breadcrumbs', BreadcrumbsComposer::class);
     }
 }

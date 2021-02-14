@@ -1,5 +1,9 @@
 @extends('layouts.front')
 @section('content')
+@include( 'partials.front.inner_pages_banner' , [ 
+    'page_title' => 'Our News',
+    'breadcrubm' => 'blog',
+]);
 
 <div class="entry-content">
     <div class="container">

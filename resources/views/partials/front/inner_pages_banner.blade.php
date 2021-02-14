@@ -4,8 +4,8 @@
         style="{{ !isset($page_header_image) ? '' : 'background-image: url(' . asset( 'storage/' . $page_header_image ) . ')'   }}">
         <div class="dcell">
             <div class="container">
-                <h1 class="page-title">Portfolio Info Under Image</h1>
-                @include('partials.front.breadcrumb')
+                <h1 class="page-title">{{$page_title ?? $breadcrubm }}</h1>
+                {{ Breadcrumbs::render($breadcrubm , $model ?? '') }}
             </div>
         </div>
     </div>

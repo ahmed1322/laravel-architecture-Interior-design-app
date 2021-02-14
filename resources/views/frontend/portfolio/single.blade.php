@@ -2,7 +2,9 @@
 
 @section('content')
 @include( 'partials.front.inner_pages_banner', [
-    'page_header_image' => $portfolio->image
+    'page_header_image' => $portfolio->image,
+    'breadcrubm' => 'portfolio',
+    'model' => $portfolio
 ] )
 <section class="portfolio-detail p-0">
     <div class="container">

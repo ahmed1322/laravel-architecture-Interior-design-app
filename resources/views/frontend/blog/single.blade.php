@@ -1,13 +1,12 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="col-lg-8 mx-auto mt-5">
-        @include('inc.error_msg')
-    </div>
 
-    <div class="col-lg-8 mx-auto mt-5">
-        @include('inc.success_msg')
-    </div>
+@include( 'partials.front.inner_pages_banner', [ 
+    'page_title' => $post->title,
+    'breadcrubm' => 'post',
+    'model' => $post
+]);
 
 <div class="entry-content">
     <div class="container">

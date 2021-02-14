@@ -19,6 +19,6 @@ Route::get('/portfolios', [App\Http\Controllers\Frontend\PortfolioController::cl
 // Category
 Route::get('/categories', [App\Http\Controllers\Frontend\CategoriesController::class, 'index'])->name('categories');
 Route::get('/category/{category_portfolios}/portfolio/{slug}', [App\Http\Controllers\Frontend\CategoriesController::class, 'singleCategoryPortfolios'])->name('single.category.portfolios');
-Route::get('/category/{category_posts}/post/{slug}', [App\Http\Controllers\Frontend\CategoriesController::class, 'singleCategoryPosts'])->name('single.category.posts');
+Route::get('/category/{category_posts}/{slug}/posts/', [App\Http\Controllers\Frontend\CategoriesController::class, 'singleCategoryPosts'])->name('single.category.posts');
 
 require_once __DIR__ . '/blog.php';
