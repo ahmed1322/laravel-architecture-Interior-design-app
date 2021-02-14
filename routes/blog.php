@@ -1,7 +1,7 @@
 <?php
 
 // Blog Page
-Route::get('/blog', [ App\Http\Controllers\Frontend\BlogController::class , 'index' ])->name('blog.index');
+Route::get('/blog', [ App\Http\Controllers\Frontend\BlogController::class , 'index' ])->name('blog');
 // Single Post
 Route::get('/post/{post}/{slug}', [ App\Http\Controllers\Frontend\BlogController::class, 'singlePost' ])->name('blog.single');
 // Related Tag posts

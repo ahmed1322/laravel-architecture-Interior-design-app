@@ -18,8 +18,10 @@ class PortfolioController extends Controller
     {
 
         return view('frontend.portfolio.index', [
-            'portfolios' => Portfolio::paginate(5),
+            'meta_title' => 'portfolios',
+            'portfolios' => $portfolio = Portfolio::paginate(5),
             'add_filtration' => true,
+            'portfolios_categories' => $HomeServices->getPortfoliosCategories($portfolio),
             'add_pagination' => true,
         ]);
     }
@@ -32,6 +34,7 @@ class PortfolioController extends Controller
     public function single(Portfolio $portfolio)
     {
         return view('frontend.portfolio.single' , [
+            'meta_title' => 'Single Portfolio',
             'portfolio' => $portfolio,
             'prev' => PortfolioAccessor::prevSiblings($portfolio),
             'next' => PortfolioAccessor::nextSiblings($portfolio),

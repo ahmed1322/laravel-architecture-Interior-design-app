@@ -29,7 +29,7 @@
                         </li>
                         <li class="footer-list-item">
                             <span class="list-item-icon"><i class="ot-flaticon-phone-call"></i></span>
-                            <span class="list-item-text">+2 {{ $settings->site_phone ?? ''  }}</span>
+                            <span class="list-item-text">{{ $settings->site_phone ?? ''  }}</span>
                         </li>
                     </ul>
                 </div>

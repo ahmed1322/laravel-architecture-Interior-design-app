@@ -52,7 +52,9 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="contact-right" style="background-image: url('images/bg1-contact.jpg');">
+                <div class="contact-right"
+                    style="background-image: url('images/bg1-contact.jpg');
+                            background-color: #0a0a0a;">
                     <div class="ot-heading">
                         <span>[ our contact details ]</span>
                         <h2 class="main-heading">Let's Start a Project</h2>
@@ -69,14 +71,14 @@
                         <i class="ot-flaticon-mail"></i>
                         <div class="info-text">
                             <h6>OUR MAILBOX:</h6>
-                            <p><a href="mailto:theratio_interior@mail.com">{{ $settings->site_location ?? '' }}</a></p>
+                            <p><a href="mailto:theratio_interior@mail.com">{{ $settings->site_email ?? '' }}</a></p>
                         </div>
                     </div>
                     <div class="contact-info">
                         <i class="ot-flaticon-phone-call"></i>
                         <div class="info-text">
                             <h6>OUR PHONE:</h6>
-                            <p><a href="+2{{ $settings->site_phone ?? '' }}">+2{{ $settings->site_phone ?? '' }}</a></p>
+                            <p><a href="{{ $settings->site_phone ?? '' }}">{{ $settings->site_phone ?? '' }}</a></p>
                         </div>
                     </div>
                     <div class="list-social">

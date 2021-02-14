@@ -13,6 +13,6 @@ class DatePostsController extends Controller
     public function datePosts($date)
     {
         $posts = Post::where('created_at', 'LIKE', "%$date%")->paginate(5);
-        return view( 'frontend.blog', [ 'posts' => $posts ] );
+        return view( 'frontend.blog.index', [ 'posts' => $posts ] );
     }
 }

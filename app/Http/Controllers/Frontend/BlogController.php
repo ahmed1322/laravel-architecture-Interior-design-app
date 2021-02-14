@@ -15,7 +15,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view( 'frontend.blog', [ 'posts' => Post::orderBy('created_at', 'desc')->paginate(5) ] );
+        return view( 'frontend.blog.index', [
+            'meta_title' => 'Blog',
+            'posts' => Post::orderBy('created_at', 'desc')->paginate(5)
+
+        ]);
     }
 
     /**
@@ -24,7 +28,8 @@ class BlogController extends Controller
 
     public function singlePost(Post $post)
     {
-        return view( 'frontend.single', [
+        return view( 'frontend.blog.single', [
+            'meta_title' => 'Single Post',
             'post' => $post,
             'next' => PostAccessor::nextSiblings($post),
             'prev' => PostAccessor::prevSiblings($post),

@@ -3,6 +3,10 @@
 // Home Page
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
 
+// Static Pages
+Route::get('/{page}', App\Http\Controllers\Frontend\PagesController::class)->name('page')
+    ->where( 'page' , 'contact' );
+
 Route::post('/contact', [App\Http\Controllers\Frontend\HomeController::class, 'contact'])->name('home.contact');
 
 // Comments

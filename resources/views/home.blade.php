@@ -6,7 +6,7 @@
     @include('partials.front.portfolio')
     @include('partials.front.home.service')
     @include('partials.front.home.testimonials')
-    @include('partials.front.home.contact')
+    @include('partials.front.contact')
     @include('partials.front.home.team')
 
 @endsection

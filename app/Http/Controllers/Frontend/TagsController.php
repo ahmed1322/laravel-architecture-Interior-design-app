@@ -14,6 +14,6 @@ class TagsController extends Controller
     public function singleTag($tagsSlug)
     {
         $tag = Tag::where('slug', $tagsSlug)->first();
-        return view( 'frontend.blog', [ 'posts' => $tag->posts()->paginate(5) ] );
+        return view( 'frontend.blog.index', [ 'posts' => $tag->posts()->paginate(5) ] );
     }
 }

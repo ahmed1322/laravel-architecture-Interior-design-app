@@ -9,22 +9,13 @@ class CategoriesController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Display Single Category Portfolios
      */
 
     public function singleCategoryPortfolios(Category $category_portfolios, $slug)
     {
         return view('frontend.portfolio.index', [
+            'meta_title' => 'Portfolios',
             'portfolios' => $category_portfolios->portfolios()->paginate(5),
             'add_pagination' => true,
         ]);
@@ -35,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function singleCategoryPosts(Category $category_posts, $slug)
     {
-        return view('frontend.blog', [
+        return view('frontend.blog.index', [
+            'meta_title' => 'Single',
             'posts' => $category_posts->posts()->paginate(5),
         ]);
 

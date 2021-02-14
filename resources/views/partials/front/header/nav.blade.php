@@ -23,10 +23,9 @@
                             <nav id="site-navigation" class="main-navigation">
                                 <ul class="menu">
                                    <li class=""><a href="/">Home</a></li>
-                                    <li class=""><a href="#">Services</a></li>
-                                    <li class=""><a href="#">Portfolio</a></li>
-                                    <li class=""><a href="{{ route('blog.index') }}">Blog</a></li>
-                                    <li><a href="contact.html">Contacts</a></li>
+                                    <li class=""><a href="{{ route('portfolios') }}">Portfolio</a></li>
+                                    <li class=""><a href="{{ route('blog') }}">Blog</a></li>
+                                    <li><a href="{{ route( 'page' , 'contact' ) }}">Contacts</a></li>
                                     @if(Auth::check() && Auth::user()->role_id !== -1)
                                         <li><a href="{{ route('settings.index') }}">Dashboard</a></li>
                                     @endif
