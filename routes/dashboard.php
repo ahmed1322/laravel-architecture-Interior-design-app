@@ -13,43 +13,42 @@ Route::middleware(['auth', 'dashboard.auth'])->prefix('dashboard')->group(functi
     // Dashborad Page
     Route::get('/', [ App\Http\Controllers\Dashboard\DashboardController::class , 'index' ])->name('dashboard');
 
-    // Settings Routes
-    Route::resource('/settings', App\Http\Controllers\Dashboard\AppSettingsController::class);
-
-    // Admin & Subadmim Profile Routes
-    Route::resource('/profile', App\Http\Controllers\Dashboard\ProfileController::class);
+    // Profile Routes
+    Route::resource('/profile', App\Http\Controllers\Dashboard\AdminProfileController::class);
 
     // Category Routes
     Route::resource('/category', App\Http\Controllers\Dashboard\CategoriesController::class)->except(['destroy', 'edit']);
 
     // Posts Index Page => the rest used in API
     Route::resource('/post', App\Http\Controllers\Dashboard\PostsController::class);
-    // Route::get('/post', [ App\Http\Controllers\Dashboard\PostsController::class , 'index' ])->name('posts.index');
-
-    // Route::resource('/post', App\Http\Controllers\Dashboard\PostsController::class);
 
     // Tag Routes
     Route::resource('/tag', App\Http\Controllers\Dashboard\TagsController::class);
 
-    // User Permissions Routes
-    Route::resource('/user', App\Http\Controllers\Dashboard\UserPermissionsController::class);
+    Route::middleware('admin.auth')->group(function () {
 
-    Route::get('/user/admins', [  App\Http\Controllers\Dashboard\UserPermissionsController::class , 'admins' ] )->name('user.admins');
+        // Settings Routes
+        Route::resource('/settings', App\Http\Controllers\Dashboard\AppSettingsController::class);
 
-    Route::put('/user/{user}/role/{role}', [  App\Http\Controllers\Dashboard\UserPermissionsController::class , 'addRole' ] )->name('user.addRole');
+        // User Permissions Routes
+        Route::resource('/user', App\Http\Controllers\Dashboard\UserPermissionsController::class);
 
-    Route::delete('/permission/{user}/{role}', [ App\Http\Controllers\Dashboard\UserPermissionsController::class ,'remove'])->name('user.remove.role');
+        Route::get('/user/admins', [  App\Http\Controllers\Dashboard\UserPermissionsController::class , 'admins' ] )->name('user.admins');
 
-    // Role Routes
-    Route::resource('/role', App\Http\Controllers\Dashboard\UsersRoleController::class);
+        Route::put('/user/{user}/role/{role}', [  App\Http\Controllers\Dashboard\UserPermissionsController::class , 'addRole' ] )->name('user.addRole');
 
-    // Profile Routes
-    Route::resource('/profile', App\Http\Controllers\Dashboard\AdminProfileController::class);
+        Route::delete('/permission/{user}/{role}', [ App\Http\Controllers\Dashboard\UserPermissionsController::class ,'remove'])->name('user.remove.role');
+
+        // Role Routes
+        Route::resource('/role', App\Http\Controllers\Dashboard\UsersRoleController::class);
+    
+    });
+    
 
 });
 
 // Related To Dashbnoard && Site
-Route::middleware(['dashboard.auth', 'auth'])->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'dashboard.auth', 'admin.auth'])->prefix('dashboard')->group(function () {
 
     // Slider Routes
     Route::resource('/slider', App\Http\Controllers\Dashboard\SliderController::class);

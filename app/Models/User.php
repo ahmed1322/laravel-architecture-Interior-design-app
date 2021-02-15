@@ -45,14 +45,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    // protected $is_admin;
-    // protected $can_access_dashboard;
-
-    // public function __construct()
-    // {
-    //     $this->is_admin = $this->status === 1  ? true : false;
-    // }
-
     /**
      * Get the phone associated with the user.
      */

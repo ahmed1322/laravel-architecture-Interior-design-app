@@ -11,10 +11,6 @@ use App\Http\Requests\Dashboard\settings\UpdateAppSettingsRequest;
 
 class AppSettingsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin.auth');
-    }
     /**
      * Display a listing of the resource.
      *

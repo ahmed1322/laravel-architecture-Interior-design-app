@@ -21,11 +21,6 @@ class Post extends Model
         'slug'
     ];
 
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
-
     /**
      * The Current author Posts
      */

@@ -3,27 +3,23 @@ Transformers
 
 Http/Controllers/CustomAuth
 Http/Controllers/ReplyController.php
-Http/Controllers/HomeController.php
 
-Http/Controllers/Dashboard/Pages
 Http/Controllers/Dashboard/Api
 Http/Controllers/Dashboard/CategoriesController.php
 Http/Controllers/Dashboard/PostsController.php
-Http/Controllers/Dashboard/PagesController.php
 Http/Controllers/Dashboard/UserPermissionsController.php
 Http/Controllers/Dashboard/UsersRoleController.php
-Http/Controllers/Dashboard/TagsController.php
+# Http/Controllers/Dashboard/TagsController.php
 
 Http/Middleware/Api
-Http/Middleware/Dashboard
+# Http/Middleware/Dashboard
 
 Http/Requests/Dashboard/Categories
-Http/Requests/Dashboard/Pages
 Http/Requests/Dashboard/Posts
 Http/Requests/Dashboard/Profiles
-Http/Requests/Dashboard/Roles
+# Http/Requests/Dashboard/Roles
 Http/Requests/Dashboard/Tags
 
-Policies/*
+# Policies/*
 
 
