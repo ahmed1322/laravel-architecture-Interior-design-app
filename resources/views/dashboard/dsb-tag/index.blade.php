@@ -39,12 +39,10 @@
                                                 <button class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </div>
-                                        
-                                        {{-- <a class="btn btn-danger" href="{{ route('tag.destroy', $tag->id) }}">Delete</a> --}}
                                     </td>
                                 </tr>
                                 @empty
-                    
+                                <p class="lead">No Post Found</p>
                             @endforelse
                         </tbody>
                     </table>

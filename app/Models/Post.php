@@ -26,6 +26,16 @@ class Post extends Model
     //     return 'slug';
     // }
 
+    /**
+     * The Current author Posts
+     */
+    protected static function scopeAuthorPosts($query)
+    {
+        if( ! auth()->user()->is_admin() ){
+            return $query->where( 'author_id' , auth()->user()->id );
+        }
+    }
+
 
     /**
      * Get the Posts for the category

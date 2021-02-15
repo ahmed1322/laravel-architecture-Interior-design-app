@@ -104,13 +104,27 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Check is user admin
+     */
+    public function is_admin()
+    {
+        return $this->role->name === 'admin';
+    }
+
+    /**
+     * Check is user admin
+     */
+    public function canAccessDashboard()
+    {
+        return $this->status === 1;
+    }
+
+    /**
      * Get the user role
      */
-    public function Current_role_id()
+    public function current_role_id()
     {
-        return DB::table('roles')
-            ->select('id')
-            ->where('name' , 'reguler_user')->value('id');
+        return $this->role_id;
     }
 
     /**
@@ -118,49 +132,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function has_role()
     {
-        return $this->role_id !== -1;
-    }
-
-    /**
-     * Get the user role id
-     */
-    public function role_id()
-    {
-        if( $this->has_role() ) return $this->role()->id;
-    }
-
-    /**
-     * Get the user Post Permissions
-     */
-    public function post_roles()
-    {
-        return $this->has_role()  ? unserialize($this->role->post_roles) : false;
-    }
-
-    public function can_view_posts()
-    {
-        if ( $this->has_role()  ) return isset($this->post_roles()['r']);
-    }
-
-    public function can_create_posts()
-    {
-        if ( $this->has_role()  ) return isset($this->post_roles()['c']);
-    }
-
-    /**
-     * Get the user Post Permissions
-     */
-    public function category_roles()
-    {
-        if ( $this->has_role()  ) return unserialize($this->role->category_roles);
-    }
-
-    /**
-     * Get the user Post Permissions
-     */
-    public function tag_roles()
-    {
-        if ( $this->has_role()  ) return unserialize($this->role->tag_roles);
+        return $this->status;
     }
 
     /**
@@ -172,10 +144,71 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check is user admin
+     * Get the Post Permissions
      */
-    public function is_admin()
+    public function post_roles()
     {
-        return $this->status === 1;
+        return unserialize($this->role->post_roles);
+    }
+
+    public function has_post_roles()
+    {
+        return ! empty(unserialize($this->role->post_roles));
+    }
+
+    public function can_view_posts()
+    {
+        return array_key_exists( 'r', $this->post_roles());
+    }
+
+    public function can_create_posts()
+    {
+        return array_key_exists( 'c' , $this->post_roles() );
+    }
+
+    /**
+     * Get the Category Permissions
+     */
+    public function category_roles()
+    {
+        return unserialize($this->role->category_roles);
+    }
+
+    public function has_category_roles()
+    {
+        return ! empty(unserialize($this->role->category_roles));
+    }
+
+    public function can_view_categories()
+    {
+        return array_key_exists( 'r', $this->category_roles() );
+    }
+
+    public function can_create_category()
+    {
+        return array_key_exists( 'c', $this->category_roles() );
+    }
+
+    /**
+     * Get the tag Permissions
+    */
+    public function tag_roles()
+    {
+        return unserialize($this->role->tag_roles);
+    }
+
+    public function has_tag_roles()
+    {
+        return ! empty( unserialize($this->role->tag_roles) );
+    }
+
+    public function can_view_tags()
+    {
+        return array_key_exists( 'r', $this->tag_roles() );
+    }
+
+    public function can_create_tag()
+    {
+        return array_key_exists ( 'c' , $this->tag_roles() );
     }
 }

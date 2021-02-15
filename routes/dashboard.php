@@ -8,7 +8,7 @@
  */
 
 // Related To Dashbnoard Area Routes
-Route::middleware(['dashboard.auth', 'auth'])->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'dashboard.auth'])->prefix('dashboard')->group(function () {
 
     // Dashborad Page
     Route::get('/', [ App\Http\Controllers\Dashboard\DashboardController::class , 'index' ])->name('dashboard');
@@ -23,7 +23,8 @@ Route::middleware(['dashboard.auth', 'auth'])->prefix('dashboard')->group(functi
     Route::resource('/category', App\Http\Controllers\Dashboard\CategoriesController::class)->except(['destroy', 'edit']);
 
     // Posts Index Page => the rest used in API
-    Route::get('/post', [ App\Http\Controllers\Dashboard\PostsController::class , 'index' ])->name('posts.index');
+    Route::resource('/post', App\Http\Controllers\Dashboard\PostsController::class);
+    // Route::get('/post', [ App\Http\Controllers\Dashboard\PostsController::class , 'index' ])->name('posts.index');
 
     // Route::resource('/post', App\Http\Controllers\Dashboard\PostsController::class);
 

@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 @section('dashboard')
-
 <div class="row mt-5 mb-5">
 
     <div class="col-lg-8 mx-auto">
@@ -9,14 +8,15 @@
             @isset($role)
                 @method('put')
             @endisset
+            @if(isset( $role ) && $role->name !== 'admin')
             <div class="form-group">
                 <label for="name">Role Name</label>
-                <input 
+                <input
                     value="{{ isset( $role ) ? ( old('name') ? old('name') : $role->name ) : old('name') }}"
                     type="text"
                     id="name"
                     name="name"
-                    class="form-control form-control-lg @error('name') is-invalid @enderror" 
+                    class="form-control form-control-lg @error('name') is-invalid @enderror"
                     placeholder="e.g admin" />
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -24,9 +24,10 @@
                         </span>
                     @enderror
                 @isset($role)
-                    <input type="hidden" name="old_name" value="{{ $role->name }}">
+                    <input type="hidden" name="id" value="{{ $role->id }}">
                 @endisset
             </div>
+            @endif
 
             <div class="from-group">
                 <div class="card">
@@ -106,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -115,5 +116,5 @@
     </div>
 
 </div>
-    
+
 @endsection

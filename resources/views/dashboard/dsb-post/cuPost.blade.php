@@ -12,7 +12,7 @@
 
             <div class="card mt-5">
                 <div class="card-body">
-                    <form action="{{ isset($post) ? route('post.update', $post->slug ) : route('post.store') }}" method="POST">
+                    <form action="{{ isset($post) ? route('post.update', $post->id ) : route('post.store') }}" method="POST">
                         <div class="form-group">
                             @csrf
                             @isset($post)
