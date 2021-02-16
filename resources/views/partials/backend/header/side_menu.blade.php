@@ -1,3 +1,8 @@
+{{-- @php
+        dd(auth()->user()->category_roles());
+
+@endphp --}}
+
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
     <div class="media user-profile mt-2 mb-2">
@@ -219,7 +224,7 @@
                 @endif
 
                 {{-- Posts --}}
-                @if ( auth()->user()->has_post_roles() ) 
+                @if ( auth()->user()->has_post_roles() )
                 <li>
                     <a href="javascript: void(0);">
                         <i class="uil uil-comment-edit"></i>
@@ -228,22 +233,23 @@
                     </a>
 
                     <ul class="nav-second-level" aria-expanded="false">
-                        @if ( auth()->user()->can_view_posts() )
+                        @can('viewAny', App\Models\Post::class)
                         <li>
                             <a href="{{ route('post.index') }}">
                                 <i class="uil uil-suitcase-alt"></i>
                                 <span class="ml-2">All Posts</span>
                             </a>
                         </li>
-                        @endif
-                        @if(auth()->user()->can_create_posts())
+                        @endcan
+
+                        @can('create', App\Models\Post::class)
                         <li>
                             <a href="{{ route('post.create') }}">
                                 <i class="uil uil-wall"></i>
                                 <span class="ml-2">Add new Post</span>
                             </a>
                         </li>
-                        @endif
+                        @endcan
 
                     </ul>
                 </li>
@@ -260,23 +266,23 @@
 
                         <ul class="nav-second-level" aria-expanded="false">
 
-                            @if( auth()->user()->can_view_categories() )
+                            @can('viewAny', App\Models\Category::class)
                                 <li>
                                     <a href="{{ route('category.index') }}">
                                         <i class="uil uil-suitcase-alt"></i>
                                         <span class="ml-2">All Categories</span>
                                     </a>
                                 </li>
-                            @endif
+                            @endcan
 
-                            @if(auth()->user()->can_create_category())
-                                <li>
-                                    <a href="{{ route('category.create') }}">
-                                        <i class="uil uil-wall"></i>
-                                        <span class="ml-2">Add new Category</span>
-                                    </a>
-                                </li>
-                            @endif
+                            @can('create', App\Models\Category::class)
+                            <li>
+                                <a href="{{ route('category.create') }}">
+                                    <i class="uil uil-wall"></i>
+                                    <span class="ml-2">Add new Category</span>
+                                </a>
+                            </li>
+                            @endcan
 
                         </ul>
                     </li>
@@ -368,7 +374,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:void(0);">
                         <i class="uil uil-envelope-send"></i>

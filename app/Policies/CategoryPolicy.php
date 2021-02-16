@@ -12,19 +12,6 @@ class CategoryPolicy
     use HandlesAuthorization;
 
     /**
-     * Perform pre-authorization checks.
-     *
-     * @param  \App\Models\User  $user
-     * @param  string  $ability
-     * @return void|bool
-     */
-    public function before(User $user, $ability)
-    {
-        // is admin or can access the admin area
-        if ( ! $user->has_role() ) return false;
-    }
-
-    /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
@@ -32,7 +19,7 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->can_view_categories() ?? false;
     }
 
     /**
@@ -44,7 +31,7 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category)
     {
-        //
+        return array_key_exists( 'r' , $user->category_roles() ) ?? false;
     }
 
     /**
@@ -55,7 +42,7 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        //
+        return array_key_exists( 'c' , $user->category_roles() ) ?? false;
     }
 
     /**
@@ -67,7 +54,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category)
     {
-        //
+        return array_key_exists( 'u' , $user->category_roles() ) ?? false;
     }
 
     /**
@@ -79,30 +66,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category)
     {
-        //
+        return array_key_exists( 'd' , $user->category_roles() ) ?? false;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Category  $category
-     * @return mixed
-     */
-    public function restore(User $user, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Category  $category
-     * @return mixed
-     */
-    public function forceDelete(User $user, Category $category)
-    {
-        //
-    }
 }

@@ -19,10 +19,7 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        // Check User can View to posts
-        if( ! $user->can_view_posts()  ) return false;
-
-        return true;
+        return $user->can_view_posts() ?? false;
     }
 
     /**
@@ -34,9 +31,8 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        if( ! array_key_exists( 'u' , $user->post_roles() ) ) return false;
-
-        return $post->author->id !== $user->id ? false : true;
+        return array_key_exists( 'u' , $user->post_roles() )
+                || $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -47,10 +43,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        // Check User can View to posts
-        if( ! $user->can_create_posts()  ) return false;
-
-        return true;
+        return array_key_exists( 'c' , $user->post_roles() ) ?? false;
     }
 
     /**
@@ -62,9 +55,8 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        if( ! array_key_exists( 'u' , $user->post_roles() ) ) return false;
-
-        return $post->author->id !== $user->id ? false : true;
+        return array_key_exists( 'u' , $user->post_roles() )
+                || $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -76,9 +68,8 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        if( ! array_key_exists( 'd' , $user->post_roles() ) ) return false;
-
-        return $post->author->id !== $user->id ? false : true;
+        return array_key_exists( 'd' , $user->post_roles() )
+                || $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -90,7 +81,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post)
     {
-        return $post->author->id !== $user->id ? false : true;
+        return $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -102,8 +93,7 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post)
     {
-        if( ! array_key_exists( 'd' , $user->post_roles() ) ) return false;
-
-        return $post->author->id !== $user->id ? false : true;
+        return array_key_exists( 'd' , $user->post_roles() )
+                || $post->author->id === $user->id ?? false;
     }
 }
