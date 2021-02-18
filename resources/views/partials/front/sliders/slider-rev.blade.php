@@ -1,7 +1,3 @@
-{{-- @php
-    dd($sliders)
-@endphp --}}
-
 <div class="p-0">
     <div class="grid-lines grid-lines-horizontal z-index-1">
         <span class="g-line-horizontal line-bottom color-line-secondary"></span>
