@@ -4,9 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Http\View\Composers\CategoryComposer;
-use App\Http\View\Composers\PortfolioComposer;
-use App\Http\View\Composers\BreadcrumbsComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,10 +25,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Share Categories Between Specific Models
-        View::composer('partials.Composers.Categories.*', CategoryComposer::class);
+        View::composer('partials.Composers.Categories.*', \App\Http\View\Composers\CategoryComposer::class);
         // Share Portfolios Between Specific Models
-        View::composer('partials.Composers.Portfolios.*', PortfolioComposer::class);
-
-        View::composer('partials.front.breadcrumbs', BreadcrumbsComposer::class);
+        View::composer('partials.Composers.Portfolios.*', \App\Http\View\Composers\PortfolioComposer::class);
+        // Share Recent Portfolios Between Specific Models
+        View::composer('partials.Composers.Portfolios.*', \App\Http\View\Composers\RecentPortfolioComposer::class);
+        // Share Recent Posts Between Specific Models
+        View::composer('partials.Composers.Posts.*', \App\Http\View\Composers\RecentPostsComposer::class);
+        // Share Recent Posts Between Specific Models
+        View::composer('partials.Composers.Tags.*', \App\Http\View\Composers\TagsComposer::class);
     }
 }

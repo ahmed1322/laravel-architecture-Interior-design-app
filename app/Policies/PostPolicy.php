@@ -32,7 +32,7 @@ class PostPolicy
     public function view(User $user, Post $post)
     {
         return array_key_exists( 'u' , $user->post_roles() )
-                || $post->author->id === $user->id ?? false;
+                && $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -56,7 +56,7 @@ class PostPolicy
     public function update(User $user, Post $post)
     {
         return array_key_exists( 'u' , $user->post_roles() )
-                || $post->author->id === $user->id ?? false;
+                && $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -69,7 +69,7 @@ class PostPolicy
     public function delete(User $user, Post $post)
     {
         return array_key_exists( 'd' , $user->post_roles() )
-                || $post->author->id === $user->id ?? false;
+                && $post->author->id === $user->id ?? false;
     }
 
     /**
@@ -94,6 +94,6 @@ class PostPolicy
     public function forceDelete(User $user, Post $post)
     {
         return array_key_exists( 'd' , $user->post_roles() )
-                || $post->author->id === $user->id ?? false;
+                && $post->author->id === $user->id ?? false;
     }
 }

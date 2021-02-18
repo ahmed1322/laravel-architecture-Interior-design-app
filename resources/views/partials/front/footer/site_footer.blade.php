@@ -35,14 +35,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0">
-                <div class="widget-footer widget-contact">
-                    <h6>Latest Projects</h6>
-                    <ul>
-                        <li><a href="#">Stylish Family Appartment</a></li>
-                        <li><a href="#">Modern Villa in Belgium</a></li>
-                        <li><a href="#">Private House in Spain</a></li>
-                    </ul>
-                </div>
+                @include('partials.Composers.Portfolios.Recent')
             </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="widget-footer footer-widget-subcribe">
