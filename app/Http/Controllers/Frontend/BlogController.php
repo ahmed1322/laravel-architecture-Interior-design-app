@@ -18,7 +18,6 @@ class BlogController extends Controller
         return view( 'frontend.blog.index', [
             'meta_title' => 'Blog',
             'posts' => Post::orderBy('created_at', 'desc')->paginate(5)
-
         ]);
     }
 

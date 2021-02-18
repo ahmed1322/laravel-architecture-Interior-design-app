@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-use App\Models\User;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\CommentHasSubmittedNotification;
 use App\Http\Requests\Frontend\Comments\CreateCommentRequest;
 
 class CommentsController extends Controller
@@ -22,6 +23,8 @@ class CommentsController extends Controller
             'comment' => $request->validated()['comment'],
             'post_id' => $post->id
         ]);
+
+        $post->author->notify(new CommentHasSubmittedNotification($user, $post, $comment));
 
         session()->flash('success_msg', 'Comment Added Successfully');
 

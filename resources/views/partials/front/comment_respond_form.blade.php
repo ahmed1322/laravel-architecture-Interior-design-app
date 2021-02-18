@@ -1,6 +1,7 @@
 <h3 class="comment-reply-title">Leave a comment</h3>
     @if ( Auth::check() )
-    <form action="{{ route('comment.add', [ 'post' => $post->slug, 'user' => auth()->user()->id ]) }}" method="post" class="comment-form">
+
+    <form action="{{ route('comment.add', [ 'post' => $post->id, 'user' => auth()->user()->id ]) }}" method="post" class="comment-form">
         <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
         {{-- <div class="row">
             <p class="comment-form-author col-md-6">

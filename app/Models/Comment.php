@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Scopes\DescScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
@@ -16,6 +17,16 @@ class Comment extends Model
     protected $fillable = [
         'comment','post_id','user_id'
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope(new DescScope);
+    }
 
     /**
      * Get the post that owns the comment.
