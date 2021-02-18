@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Events\Comments\PostCommentSubmittedEvent;
 use App\Notifications\CommentHasSubmittedNotification;
 use App\Http\Requests\Frontend\Comments\CreateCommentRequest;
 
@@ -19,15 +20,7 @@ class CommentsController extends Controller
      */
     public function store(CreateCommentRequest $request, Post $post, User $user)
     {
-        $comment = $user->comments()->create([
-            'comment' => $request->validated()['comment'],
-            'post_id' => $post->id
-        ]);
-
-        $post->author->notify(new CommentHasSubmittedNotification($user, $post, $comment));
-
-        session()->flash('success_msg', 'Comment Added Successfully');
-
+        event( new PostCommentSubmittedEvent($user , $post , $request->validated()['comment'] ) );
         return redirect()->back();
     }
 

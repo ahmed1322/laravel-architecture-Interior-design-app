@@ -20,11 +20,12 @@ class CommentHasSubmittedNotification extends Notification implements ShouldQueu
      *
      * @return void
      */
-    public function __construct( $user, $post , $comment = [] )
+    public function __construct( $user, $post , $comment )
     {
         $this->user = $user;
         $this->post = $post;
         $this->comment = $comment;
+        // dd( $this->comment );
     }
 
     /**
@@ -49,7 +50,7 @@ class CommentHasSubmittedNotification extends Notification implements ShouldQueu
         return (new MailMessage)
                     ->line($this->user->name . ' Has Commented on Your post ' . $this->post->title)
                     ->line( 'the Comment ')
-                    ->line( $this->comment->comment)
+                    ->line( $this->comment)
                     ->action('See Comments ', url(route( 'blog.single', [ 'post' => $this->post->id , 'slug' => $this->post->slug ] )));
     }
 
