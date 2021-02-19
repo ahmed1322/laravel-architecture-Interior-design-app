@@ -60,9 +60,7 @@
 
                     </div>
                 </div>
-                <nav aria-label="...">
-                    <ul class="pagination" id='api-pagination'></ul>
-                </nav>
+                {{ $posts->links( 'partials.backend.pagination' ) }}
             </div>
 
         </div>
