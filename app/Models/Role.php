@@ -27,4 +27,9 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function reguler_user_role_id()
+    {
+        return $this->where( 'name' , 'reguler_user' )->value('id');
+    }
 }
