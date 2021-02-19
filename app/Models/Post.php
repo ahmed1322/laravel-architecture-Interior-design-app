@@ -26,11 +26,8 @@ class Post extends Model
      */
     protected static function scopeAuthorPosts($query)
     {
-        if( ! auth()->user()->is_admin() ){
-            return $query->where( 'author_id' , auth()->user()->id );
-        }
+        return $query->where( 'author_id' , auth()->user()->id );
     }
-
 
     /**
      * Get the Posts for the category
