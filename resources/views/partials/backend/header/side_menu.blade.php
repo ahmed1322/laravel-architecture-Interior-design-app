@@ -1,16 +1,8 @@
-{{-- @php
-        dd(auth()->user()->category_roles());
-
-@endphp --}}
-
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
     <div class="media user-profile mt-2 mb-2">
         <img src="{{ Gravatar::src(auth()->user()->email) }}" class="avatar-sm rounded-circle mr-2" alt="Shreyu" />
         <img src="{{ Gravatar::src(auth()->user()->email) }}" class="avatar-xs rounded-circle mr-2" alt="Shreyu" />
-        @php
-            // dump(auth()->user()->posts())
-        @endphp
         <div class="media-body">
             <h6 class="pro-user-name mt-0 mb-0">
                 {{ auth()->user()->name }}
@@ -384,7 +376,7 @@
                 @endif
 
                 <li>
-                    <a href="javascript:void(0);">
+                    <a href="{{ route( 'comments.index' ) }}">
                         <i class="uil uil-comment-alt-message"></i>
                         <span> Comment </span>
                     </a>

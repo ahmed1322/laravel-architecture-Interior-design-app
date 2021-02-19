@@ -13,6 +13,10 @@ Route::middleware(['auth', 'dashboard.auth'])->prefix('dashboard')->group(functi
     // Dashborad Page
     Route::get('/', [ App\Http\Controllers\Dashboard\DashboardController::class , 'index' ])->name('dashboard');
 
+    Route::resource('/comments', App\Http\Controllers\Dashboard\CommentsController::class)->except(['show']);
+
+    Route::get( '/comments/{post}' , [ App\Http\Controllers\Dashboard\CommentsController::class , 'show' ] )->name('comments.show');
+
     // Profile Routes
     Route::resource('/profile', App\Http\Controllers\Dashboard\AdminProfileController::class);
 
@@ -41,9 +45,9 @@ Route::middleware(['auth', 'dashboard.auth'])->prefix('dashboard')->group(functi
 
         // Role Routes
         Route::resource('/role', App\Http\Controllers\Dashboard\UsersRoleController::class);
-    
+
     });
-    
+
 
 });
 
