@@ -73,6 +73,8 @@
 
                     </div>
                 </div>
+
+                {{ $sliders->links('partials.backend.pagination') }}
             </div>
 
         </div>

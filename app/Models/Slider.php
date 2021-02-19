@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Scopes\DescScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Slider extends Model
 {
@@ -24,6 +25,25 @@ class Slider extends Model
         'visible',
         'image'
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope(new DescScope);
+    }
+
+    public static function SliderSearch($searchServices)
+    {
+        return $searchServices
+                ->setModel(\App\Models\Slider::class)
+                ->setSearchable('title')
+                ->setSearch_key(request()->query('search'))
+                ->search();
+    }
 
 
     /**

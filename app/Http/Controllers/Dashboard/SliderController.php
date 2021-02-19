@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 use App\Models\Slider;
 use App\Http\Controllers\Controller;
+use App\Services\Dashboard\SearchServices;
 use App\Services\Dashboard\ModelActions\UpdateTable;
 use App\Services\Dashboard\ModelActions\StoreInTable;
 use App\Http\Requests\Dashboard\Site\CreateSliderRequest;
@@ -16,10 +17,12 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchServices $searchServices)
     {
         return view('dashboard.dsb-slider.index' , [
-            'sliders' => Slider::all()->sortByDesc("created_at"),
+            'sliders' => Slider::SliderSearch( $searchServices, auth()->user()->posts())
+                        ->paginate(5)
+                        ->appends(['search' => request()->query('search') ])
         ]);
 
     }
