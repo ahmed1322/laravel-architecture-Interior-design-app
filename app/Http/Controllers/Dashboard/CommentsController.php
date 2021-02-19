@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\UserComments;
+use App\Services\Dashboard\SearchServices;
 
 class CommentsController extends Controller
 {
@@ -15,9 +15,15 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserComments $userComments)
+    public function index(SearchServices $searchServices)
     {
         // dd($userComments->userPostsComments());
+        $posts = $searchServices
+                ->setRelationalModel(auth()->user()->posts())
+                ->setSearchable('title')
+                ->setSearch_key(request()->query('search'))
+                ->search();
+
         return view( 'dashboard.dsb-comments.index', [
             'posts' => auth()->user()->posts()->paginate(5)
         ]);

@@ -44,6 +44,20 @@ class SearchServices {
         return $this;
     }
 
+    /**
+     * Set the value of model
+     *
+     * @return  self
+     */
+    public function setRelationalModel($model)
+    {
+        $this->model = $model;
+
+        dd( $this->model );
+
+        return $this;
+    }
+
     public function search()
     {
         return $this->model->where( $this->searchable , 'LIKE', "%$this->search_key%" );
