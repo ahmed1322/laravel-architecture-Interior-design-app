@@ -17,15 +17,10 @@ class CommentsController extends Controller
      */
     public function index(SearchServices $searchServices)
     {
-        // dd($userComments->userPostsComments());
-        $posts = $searchServices
-                ->setRelationalModel(auth()->user()->posts())
-                ->setSearchable('title')
-                ->setSearch_key(request()->query('search'))
-                ->search();
-
         return view( 'dashboard.dsb-comments.index', [
-            'posts' => auth()->user()->posts()->paginate(5)
+            'posts' => Comment::authorPostCommentsSearch( $searchServices, auth()->user()->posts())
+                        ->paginate(5)
+                        ->appends(['search' => request()->query('search') ])
         ]);
     }
 
@@ -56,11 +51,15 @@ class CommentsController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, Request $request)
+    public function show(Post $post,SearchServices $searchServices)
     {
+
+
         return view( 'dashboard.dsb-comments.post_comments', [
             'post' => $post,
-            'comments' => $post->comments()->paginate(5),
+            'comments' => Comment::authorCommentsSearch( $searchServices, $post->comments())
+                        ->paginate(5)
+                        ->appends(['search' => request()->query('search') ]),
         ]);
     }
 

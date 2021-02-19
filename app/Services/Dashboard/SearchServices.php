@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard;
 
+
 class SearchServices {
 
     public $search_key;
@@ -52,8 +53,6 @@ class SearchServices {
     public function setRelationalModel($model)
     {
         $this->model = $model;
-
-        dd( $this->model );
 
         return $this;
     }

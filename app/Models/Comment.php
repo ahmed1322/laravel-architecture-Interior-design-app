@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Scopes\DescScope;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\Dashboard\SearchServices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
@@ -26,6 +27,24 @@ class Comment extends Model
     protected static function booted()
     {
         static::addGlobalScope(new DescScope);
+    }
+
+    public static function authorPostCommentsSearch($searchServices , $posts)
+    {
+        return $searchServices
+                ->setRelationalModel($posts)
+                ->setSearchable('title')
+                ->setSearch_key(request()->query('search'))
+                ->search();
+    }
+
+    public static function authorCommentsSearch($searchServices , $posts)
+    {
+        return $searchServices
+                ->setRelationalModel($posts)
+                ->setSearchable('comment')
+                ->setSearch_key(request()->query('search'))
+                ->search();
     }
 
     /**
