@@ -66,6 +66,7 @@
 
                     </div>
                 </div>
+                {{ $portfolios->links( 'partials.backend.pagination' ) }}
             </div>
 
         </div>

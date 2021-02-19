@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Dashboard\UpdateTable;
 use Illuminate\Support\Facades\Storage;
 use App\Services\Dashboard\StoreInTable;
+use App\Services\Dashboard\SearchServices;
 use App\Http\Requests\Dashboard\Site\Portfolio\CreatePortfolioRequest;
 use App\Http\Requests\Dashboard\Site\Portfolio\UpdatePortfolioRequest;
 
@@ -19,10 +20,12 @@ class PortfolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchServices $searchServices)
     {
         return view('dashboard.site.portfolio.index', [
-            'portfolios' => Portfolio::all()
+            'portfolios' => Portfolio::PortfolioSearch($searchServices)
+                            ->paginate(5)
+                            ->appends(['search' => request()->query('search') ])
         ]);
     }
 
