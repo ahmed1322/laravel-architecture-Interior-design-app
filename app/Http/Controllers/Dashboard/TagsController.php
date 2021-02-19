@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Dashboard\SearchServices;
 use App\Http\Requests\Dashboard\Tags\CreateTagRequest;
 use App\Http\Requests\Dashboard\Tags\UpdateTagRequest;
 
@@ -15,15 +17,15 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(SearchServices $searchServices, Tag $tag)
     {
-            
-        if ( $request->user()->cannot('viewAny', Tag::class)) {
+
+        if ( request()->user()->cannot('viewAny', Tag::class)) {
             abort(403);
         }
 
         return view( 'dashboard.dsb-tag.index', [
-            'tags' => Tag::paginate(5),
+            'tags' => $tag->search('name')->doPaginate(5),
         ] );
     }
 
@@ -39,7 +41,7 @@ class TagsController extends Controller
         if ( $request->user()->cannot('create', Tag::class)) {
             abort(403);
         }
-        
+
         return view( 'dashboard.dsb-tag.cuTag' );
     }
 

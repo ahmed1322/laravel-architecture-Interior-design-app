@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Dashboard\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Dashboard\PaginationTrait;
+use App\Services\Dashboard\SearchServices;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tag extends Model
 {
-    use HasFactory;
+    use SearchTrait,PaginationTrait, HasFactory;
+
+    public $search_services;
 
     /**
      * The attributes that are mass assignable.
@@ -30,4 +35,5 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class, 'posts_tags');
     }
+
 }
