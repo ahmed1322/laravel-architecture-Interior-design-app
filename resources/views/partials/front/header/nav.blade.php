@@ -26,9 +26,11 @@
                                     <li class=""><a href="{{ route('portfolios') }}">Portfolio</a></li>
                                     <li class=""><a href="{{ route('blog') }}">Blog</a></li>
                                     <li><a href="{{ route( 'page' , 'contact' ) }}">Contacts</a></li>
-                                    @if(Auth::check() && Auth::user()->role_id !== -1)
-                                        <li><a href="{{ route('settings.index') }}">Dashboard</a></li>
-                                    @endif
+                                    @can('viewAny', App\Models\Setting::class)
+                                        <li><a href="{{ route('settings.index') }}">Settings</a></li>
+                                    @elsecan('viewAny', App\Models\Profile::class)
+                                        <li><a href="{{ route('profile.index') }}">Profile</a></li>
+                                    @endcan
                                     @guest
                                         @if (Route::has('login'))
                                             <li class="nav-item">
