@@ -67,6 +67,7 @@
 
                     </div>
                 </div>
+                {{ $teams->links( 'partials.backend.pagination' ) }}
             </div>
 
         </div>

@@ -67,6 +67,7 @@
 
                     </div>
                 </div>
+                {{ $services->links( 'partials.backend.pagination' ) }}
             </div>
 
         </div>

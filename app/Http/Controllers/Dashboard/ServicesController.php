@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Http\Controllers\Controller;
 use App\Services\Dashboard\UpdateTable;
 use App\Services\Dashboard\StoreInTable;
+use App\Services\Dashboard\SearchServices;
 use App\Http\Requests\Dashboard\Site\Service\CreateServiceRequest;
 use App\Http\Requests\Dashboard\Site\Service\UpdateServiceRequest;
 
@@ -17,10 +18,12 @@ class ServicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchServices $searchServices)
     {
         return view('dashboard.site.service.index', [
-            'services' => Service::all(),
+            'services' =>  Service::ServiceSearch($searchServices)
+                            ->paginate(2)
+                            ->appends(['search' => request()->query('search') ])
         ]);
     }
 

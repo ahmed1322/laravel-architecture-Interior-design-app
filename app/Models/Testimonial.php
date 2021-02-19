@@ -30,4 +30,14 @@ class Testimonial extends Model
     {
         static::addGlobalScope(new DescScope);
     }
+
+    public static function TestimonialSearch($searchServices)
+    {
+        return $searchServices
+                ->setModel(\App\Models\Testimonial::class)
+                ->setSearchable('name')
+                ->setSearch_key(request()->query('search'))
+                ->search();
+    }
+
 }
