@@ -1,5 +1,12 @@
 @extends('layouts.dashboard')
 @section('dashboard')
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6 offset-md-3 mt-5">
+                @include('partials.backend.search')
+            </div>
+        </div>
+    </div>
     <div class="col-lg-6 mx-auto mt-5">
         <div class="card card-body">
             <h5 class="mb-2 font-size-16 db-light">
