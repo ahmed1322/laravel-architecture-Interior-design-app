@@ -6,17 +6,28 @@ use App\Services\Dashboard\SearchServices;
 
 trait SearchTrait {
 
-    public $searchServices;
+    public static $searchServices;
+    public static $model;
 
-    public function search($search_column_name)
+    public static function search($search_column_name, $model = NULL)
     {
-        $this->setSearchServices();
+        self::setSearchServices();
 
-        return $this->searchServices
-                ->setModel('\App\\Models\\'. class_basename($this))
+        return self::$searchServices
+                ->setModel(self::setModel($model))
                 ->setSearchable($search_column_name)
                 ->setSearch_key(request()->query('search'))
                 ->search();
+    }
+
+    /**
+     * Set the value of searchServices
+     *
+     * @return  self
+     */
+    public static function setModel($model)
+    {
+        return ! is_null($model) ? $model : '\App\\Models\\'. class_basename(static::class);
     }
 
 
@@ -25,11 +36,9 @@ trait SearchTrait {
      *
      * @return  self
      */
-    public function setSearchServices()
+    public static function setSearchServices()
     {
-        $this->searchServices = new SearchServices;
-
-        return $this;
+        self::$searchServices = new SearchServices;
     }
 
 }

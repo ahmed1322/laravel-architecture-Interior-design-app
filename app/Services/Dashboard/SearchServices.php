@@ -40,9 +40,27 @@ class SearchServices {
      */
     public function setModel($model)
     {
-        $this->model = new $model;
+        if( is_object($model) ){
+
+            $this->useObject( $model );
+
+        }elseif( is_string($model) ){
+
+           $this->initObject( $model );
+
+        }
 
         return $this;
+    }
+
+    public function initObject( string $object_name )
+    {
+        $this->model = new $object_name;
+    }
+
+    public function useObject( object $object )
+    {
+        $this->model = $object;
     }
 
     /**
@@ -53,7 +71,6 @@ class SearchServices {
     public function setRelationalModel($model)
     {
         $this->model = $model;
-
         return $this;
     }
 
