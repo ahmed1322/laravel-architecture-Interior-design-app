@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Testimonial;
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\SearchServices;
 use App\Services\Dashboard\ModelActions\UpdateTable;
 use App\Services\Dashboard\ModelActions\StoreInTable;
 use App\Services\Dashboard\ModelActions\DeleteFromTable;
@@ -18,12 +17,11 @@ class TestimonialsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchServices $searchServices)
+    public function index()
     {
         return view( 'dashboard.site.testimonial.index' , [
-            'testimonials' => Testimonial::TestimonialSearch($searchServices)
-                                ->paginate(5)
-                                ->appends(['search' => request()->query('search') ])
+            'testimonials' => Testimonial::search('name')
+                                ->doPaginate()
         ]);
     }
 

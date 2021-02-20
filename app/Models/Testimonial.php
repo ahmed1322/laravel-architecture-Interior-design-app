@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Scopes\DescScope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Testimonial extends Model
+class Testimonial extends BaseModel
 {
     use HasFactory;
 
@@ -30,14 +29,4 @@ class Testimonial extends Model
     {
         static::addGlobalScope(new DescScope);
     }
-
-    public static function TestimonialSearch($searchServices)
-    {
-        return $searchServices
-                ->setModel(\App\Models\Testimonial::class)
-                ->setSearchable('name')
-                ->setSearch_key(request()->query('search'))
-                ->search();
-    }
-
 }
