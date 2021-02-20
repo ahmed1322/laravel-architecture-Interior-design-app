@@ -1,8 +1,15 @@
 @extends('layouts.dashboard')
 
 @section('dashboard')
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6 offset-md-6 mt-5">
+                @include('partials.backend.search')
+            </div>
+        </div>
+    </div>
     <div class="row">
-        
+
         <div class="col-md-8 mx-auto mt-5">
             @if(session('action'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,8 +35,8 @@
                                     <div class="col-sm-auto">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item pr-2">
-                                                <a  
-                                                    href="#" 
+                                                <a
+                                                    href="#"
                                                     class="text-muted d-inline-block"
                                                     data-toggle="tooltip"
                                                     data-placement="top"
@@ -38,7 +45,7 @@
                                             </li>
                                             <li class="list-inline-item pr-2">
                                                 <a
-                                                    href="#" 
+                                                    href="#"
                                                     class="text-muted d-inline-block"
                                                     data-toggle="tooltip"
                                                     data-placement="top"
@@ -71,11 +78,16 @@
                     </div>
                 @empty
             </div>
-            <h1>No Roles Added Yet</h1> 
+            <h1>No Roles Added Yet</h1>
             @endforelse
-        </div>
 
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                {{ $roles->links( 'partials.backend.pagination' ) }}
+            </div>
+        </div>
     </div>
 
-    
+
 @endsection
