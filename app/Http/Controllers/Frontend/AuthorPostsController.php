@@ -13,6 +13,6 @@ class AuthorPostsController extends Controller
     public function authorPosts($author_id)
     {
         $posts = Post::where('author_id', $author_id)->paginate(5);
-        return view( 'frontend.blog', [ 'posts' => $posts ] );
+        return view( 'frontend.blog.index', [ 'posts' => $posts ] );
     }
 }
