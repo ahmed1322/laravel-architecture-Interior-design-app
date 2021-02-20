@@ -18,9 +18,8 @@ class CommentsController extends Controller
     public function index(SearchServices $searchServices)
     {
         return view( 'dashboard.dsb-comments.index', [
-            'posts' => Comment::authorPostCommentsSearch( $searchServices, auth()->user()->posts())
-                        ->paginate(5)
-                        ->appends(['search' => request()->query('search') ])
+            'posts' => Post::search( 'title' , auth()->user()->posts() )
+                        ->doPaginate()
         ]);
     }
 
@@ -53,13 +52,9 @@ class CommentsController extends Controller
      */
     public function show(Post $post,SearchServices $searchServices)
     {
-
-
         return view( 'dashboard.dsb-comments.post_comments', [
             'post' => $post,
-            'comments' => Comment::authorCommentsSearch( $searchServices, $post->comments())
-                        ->paginate(5)
-                        ->appends(['search' => request()->query('search') ]),
+            'comments' => Comment::search( 'comment' , $post->comments() )->doPaginate()
         ]);
     }
 

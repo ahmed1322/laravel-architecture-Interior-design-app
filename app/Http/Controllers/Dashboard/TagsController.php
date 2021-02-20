@@ -17,7 +17,7 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchServices $searchServices, Tag $tag)
+    public function index()
     {
 
         if ( request()->user()->cannot('viewAny', Tag::class)) {
@@ -25,7 +25,7 @@ class TagsController extends Controller
         }
 
         return view( 'dashboard.dsb-tag.index', [
-            'tags' => $tag->search('name')->doPaginate(5),
+            'tags' => Tag::search('name')->doPaginate(),
         ] );
     }
 

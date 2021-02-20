@@ -7,8 +7,6 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\SearchServices;
-use App\Services\Dashboard\CategoryServices;
 use App\Services\Dashboard\ModelActions\UpdateTable;
 use App\Services\Dashboard\ModelActions\StoreInTable;
 use App\Http\Requests\Dashboard\Posts\CreatePostRequest;
@@ -24,24 +22,17 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, SearchServices $searchServices)
+    public function index()
     {
 
-        if ( $request->user()->cannot('viewAny', Post::class)) {
+        if ( request()->user()->cannot('viewAny', Post::class)) {
             abort(403);
         }
 
-        $posts = $searchServices
-                ->setModel(\App\Models\Post::class)
-                ->setSearchable('title' )
-                ->setSearch_key(request()->query('search'))
-                ->search();
-
         return view( 'dashboard.dsb-post.index', [
-            'posts' =>  $posts
+            'posts' =>  Post::search('title')
                         ->authorPosts()
-                        ->paginate(5)
-                        ->appends(['search' => request()->query('search') ])
+                        ->doPaginate()
         ]);
     }
 
