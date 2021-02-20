@@ -21,7 +21,7 @@ trait SearchTrait {
     }
 
     /**
-     * Set the value of searchServices
+     * Set the value of model
      *
      * @return  self
      */
