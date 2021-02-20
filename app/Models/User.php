@@ -1,16 +1,19 @@
 <?php
 
 namespace App\Models;
+use App\Scopes\DescScope;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
+use App\Traits\Dashboard\SearchTrait;
 use Illuminate\Notifications\Notifiable;
+use App\Traits\Dashboard\PaginationTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use SearchTrait, PaginationTrait, HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +47,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope(new DescScope);
+    }
 
     /**
      * Get the phone associated with the user.

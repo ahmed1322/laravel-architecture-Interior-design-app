@@ -1,6 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('dashboard')
+<div class="container">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6 offset-md-6 mt-5">
+                @include('partials.backend.search')
+            </div>
+        </div>
+    </div>
     <div class="row">
 
         <div class="col-md-8 mx-auto mt-5">
@@ -34,7 +42,7 @@
                                                     data-toggle="tooltip"
                                                     data-placement="top"
                                                     title=""
-                                                    data-original-title="Created at"> <i class="uil uil-calender mr-1"></i> {{ $user->created_at->format('d:m-Y') }} </a>
+                                                    data-original-title="Created at"> <i class="uil uil-calender mr-1"></i> {{ $user->created_at->diffForHumans() }} </a>
                                             </li>
 
                                         </ul>
@@ -44,12 +52,12 @@
                                         <i class="uil uil-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        @foreach($roles as $role)
-                                            @if($user->role_id !== $role->id)
-                                                <form method="post" action="{{ route('user.addRole', ['user' => $user->id, 'role' => $role->id]) }}">
+                                        @foreach($roles as $id => $name)
+                                            @if($user->role_id !== $id )
+                                                <form method="post" action="{{ route('user.addRole', ['user' => $user->id, 'role' => $id ]) }}">
                                                     @csrf
                                                     @method('put')
-                                                    <button class="dropdown-item text-success"><i class="uil uil-edit-alt mr-2"></i>Make {{ $role->name }}</button>
+                                                    <button class="dropdown-item text-success"><i class="uil uil-edit-alt mr-2"></i>Make {{ $name }}</button>
                                                 </form>
                                             @endif
                                         @endforeach
@@ -72,9 +80,9 @@
             </div>
             <h1>No Roles Added Yet</h1>
             @endforelse
+            {{ $users->links( 'partials.backend.pagination' ) }}
         </div>
 
     </div>
-
-
+</div>
 @endsection

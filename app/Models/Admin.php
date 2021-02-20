@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use Laravel\Passport\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\DB;
-class Admin extends Authenticatable implements MustVerifyEmail
+
+class Admin extends User
 {
-    use HasFactory, HasFactory, Notifiable;
+    use SearchTrait, PaginationTrait;
 
     /**
      * The table associated with the model.
@@ -58,17 +53,6 @@ class Admin extends Authenticatable implements MustVerifyEmail
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
-    }
-
-
-    /**
-     * Get the user role
-     */
-    public function Current_role_id()
-    {
-        return DB::table('roles')
-            ->select('id')
-            ->where('name' , 'admin')->value('id');
     }
 
 }
