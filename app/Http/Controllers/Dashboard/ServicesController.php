@@ -21,9 +21,8 @@ class ServicesController extends Controller
     public function index(SearchServices $searchServices)
     {
         return view('dashboard.site.service.index', [
-            'services' =>  Service::ServiceSearch($searchServices)
-                            ->paginate(2)
-                            ->appends(['search' => request()->query('search') ])
+            'services' =>  Service::search('title')
+                            ->doPaginate()
         ]);
     }
 
