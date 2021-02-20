@@ -6,7 +6,7 @@ use App\Scopes\DescScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Team extends Model
+class Team extends BaseModel
 {
     use HasFactory;
 
@@ -34,14 +34,5 @@ class Team extends Model
     protected static function booted()
     {
         static::addGlobalScope(new DescScope);
-    }
-
-    public static function TeamSearch($searchServices)
-    {
-        return $searchServices
-                ->setModel(\App\Models\Team::class)
-                ->setSearchable('name')
-                ->setSearch_key(request()->query('search'))
-                ->search();
     }
 }

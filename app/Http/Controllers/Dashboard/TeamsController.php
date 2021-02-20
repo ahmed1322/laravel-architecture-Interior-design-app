@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 use App\Models\Team;
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\SearchServices;
 use App\Services\Dashboard\ModelActions\StoreInTable;
 use App\Services\Dashboard\ModelActions\DeleteFromTable;
 use App\Http\Requests\Dashboard\Site\Team\CreateTeamRequest;
@@ -16,12 +15,11 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchServices $searchServices)
+    public function index()
     {
         return view( 'dashboard.site.team.index' , [
-            'teams' => Team::TeamSearch($searchServices)
-                                ->paginate(5)
-                                ->appends(['search' => request()->query('search') ])
+            'teams' => Team::search('name')
+                            ->doPaginate()
         ]);
     }
 
