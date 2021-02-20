@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Scopes\DescScope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Portfolio extends Model
+class Portfolio extends BaseModel
 {
     use HasFactory;
 

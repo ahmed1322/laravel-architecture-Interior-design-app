@@ -20,12 +20,10 @@ class PortfolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchServices $searchServices)
+    public function index()
     {
         return view('dashboard.site.portfolio.index', [
-            'portfolios' => Portfolio::PortfolioSearch($searchServices)
-                            ->paginate(5)
-                            ->appends(['search' => request()->query('search') ])
+            'portfolios' => Portfolio::search('title')->doPaginate(),
         ]);
     }
 
