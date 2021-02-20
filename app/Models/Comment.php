@@ -27,24 +27,6 @@ class Comment extends BaseModel
         static::addGlobalScope(new DescScope);
     }
 
-    public static function authorPostCommentsSearch($searchServices , $posts)
-    {
-        return $searchServices
-                ->setRelationalModel($posts)
-                ->setSearchable('title')
-                ->setSearch_key(request()->query('search'))
-                ->search();
-    }
-
-    public static function authorCommentsSearch($searchServices , $posts)
-    {
-        return $searchServices
-                ->setRelationalModel($posts)
-                ->setSearchable('comment')
-                ->setSearch_key(request()->query('search'))
-                ->search();
-    }
-
     /**
      * Get the post that owns the comment.
      */
