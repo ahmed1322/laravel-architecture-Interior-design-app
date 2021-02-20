@@ -8,7 +8,7 @@ Http/Controllers/Dashboard/Api
 Http/Controllers/Dashboard/CategoriesController.php
 # Http/Controllers/Dashboard/PostsController.php
 # Http/Controllers/Dashboard/UserPermissionsController.php
-Http/Controllers/Dashboard/UsersRoleController.php
+# Http/Controllers/Dashboard/UsersRoleController.php
 # Http/Controllers/Dashboard/TagsController.php
 
 Http/Middleware/Api
