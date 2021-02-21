@@ -12,6 +12,29 @@
                         <form action="{{ route('login') }}" method="POST" class="authentication-form">
                             @csrf
                             <div class="form-group">
+                                <label class="form-control-label">Name<sup class="text-danger">*</sup></label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="uil uil-user"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                        class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value="{{ old('name') }}"
+                                        placeholder="ahmed mostafa">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="form-control-label">Email Address <sup class="text-danger">*</sup></label>
                                 <div class="input-group input-group-merge">
                                     <div class="input-group-prepend">
