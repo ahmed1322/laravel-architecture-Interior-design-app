@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Post;
+use App\Models\User;
 use App\Traits\UnsplashRandomPhotos;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
 {
@@ -24,12 +25,17 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+
+        $author = User::all()->filter( function( $user ){
+                return $user->role()->where( 'name' , 'sub_admin' )->count();
+            })->random(1)->pluck('id')->first();
+
         return [
             'title' => $title = $this->faker->sentence($nbWords = 5, $variableNbWords = false),
             'slug' => str_slug($title),
             'content' => $this->faker->sentence($nbWords = 20, $variableNbWords = false),
             'category_id' => $this->faker->numberBetween(1,7),
-            'author_id' => $this->faker->numberBetween(2,6),
+            'author_id' => $author,
             'image' => $this->faker->unique()->randomElement($this->randomPhotos())
         ];
     }

@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\Dashboard\SearchTrait;
+use App\Traits\Dashboard\PaginationTrait;
+
 
 class Admin extends User
 {
