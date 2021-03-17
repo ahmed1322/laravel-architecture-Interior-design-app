@@ -16,3 +16,23 @@ css/*
 
 js/*
 !app.min.js
+!js/jquery.min.js
+!js/mousewheel.min.js
+!js/lightgallery-all.min.js
+!js/jquery.magnific-popup.min.js
+!js/jquery.isotope.min.js
+!js/owl.carousel.min.js
+!js/easypiechart.min.js
+!js/jquery.countdown.min.js
+!js/scripts.js
+
+!jquery.themepunch.tools.min.js
+!jquery.themepunch.revolution.min.js
+
+!revolution-plugin.js
+
+!rev-script-1.js
+!app.js
+
+plugins
+
