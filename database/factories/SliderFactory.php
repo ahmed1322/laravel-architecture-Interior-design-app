@@ -21,7 +21,7 @@ class SliderFactory extends Factory
     public function definition()
     {
         $slider_images = [
-            'site/slider/F0YjiWWCh60oP6tIgM5fakboAzdsbYjTFuCsduvj.jpg',
+            'site/slider/7SNfskCrBuaszYrRaAKlxbt8GWfZif86q9eAw70U.jpg',
             'site/slider/GqzseTdXiLyDLOUf0d8y2jJO4DAtitEHxGXQxMI8.jpg',
             'site/slider/lOUxMs0zfBlGzStzkXGnbqWLRt0tH50KYdbwxOUu.jpg',
         ];
