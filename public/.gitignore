@@ -13,6 +13,8 @@ css/*
 !style.css
 !settings.css
 !navigation.css
+!icons.min.css
+!bootstrap.min.css
 
 js/*
 !app.min.js
@@ -33,6 +35,9 @@ js/*
 
 !rev-script-1.js
 !app.js
+
+!vendor.min.js
+!app.min.js
 
 plugins
 
