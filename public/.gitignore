@@ -1,11 +1,18 @@
 css/*
 !style.css
 !app.min.css
+!font-awesome.min.css
+!flaticon.css
+!owl.carousel.min.css
+!owl.theme.css
+!magnific-popup.css
+!lightgallery.css
+!woocommerce.css
+!royal-preload.css
+!app.css
+!style.css
+!settings.css
+!navigation.css
 
 js/*
 !app.min.js
-
-fonts
-plugins
-
-!storage/*
